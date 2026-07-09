@@ -20,11 +20,16 @@ public class App {
         System.out.println("3. Show pending tasks");
         System.out.println("4. Save tasks to file");
         System.out.println("5. Show all tasks");
-        System.out.println("6. Exit");
+        System.out.println("6. Search task by title");
+        System.out.println("7. Exit");
     }
 
     public static void addTask (Scanner input, ArrayList<Task> tasks){
         String title = ui.InputUtils.getString(input, "title: ");
+        if (title.trim().isEmpty()){
+            System.out.println("empty title is not allowed");
+            return;
+        }
         String desc = ui.InputUtils.getString(input, "description: ");
         Task task = new Task(title, desc);
         tasks.add(task);
@@ -65,6 +70,26 @@ public class App {
         }
     }
 
+    public static Task findTaskByTitle(ArrayList<Task> tasks, String title){
+        for (Task t : tasks){
+            if (t.getTitle().equals(title)){
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public static void searchTaskByTitle(Scanner input, ArrayList<Task> tasks){
+        String title = InputUtils.getString(input, "enter the title: ");
+        Task task = findTaskByTitle(tasks, title);
+        if(task == null){
+            System.out.println("task not fount");
+        }else{
+            System.out.println("task found: ");
+            System.out.println(task);
+        }
+    }
+
     public static void  run(ArrayList<Task> tasks){
         Scanner input = new Scanner(System.in);
         int choice;
@@ -90,11 +115,14 @@ public class App {
                     showAllTasks(tasks);
                     break;
                 case 6:
+                    searchTaskByTitle(input, tasks);
+                    break;
+                case 7:
                     System.out.println("Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
-        }while(choice != 6);
+        }while(choice != 7);
     }
 }
