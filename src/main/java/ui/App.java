@@ -18,7 +18,7 @@ public class App {
         System.out.println("1. Add a new task");
         System.out.println("2. Mark a task as completed");
         System.out.println("3. Show pending tasks");
-        System.out.println("4. Save tasks to file");
+        System.out.println("4. Save tasks to Json");
         System.out.println("5. Show all tasks");
         System.out.println("6. Search task by title");
         System.out.println("7. Exit");
@@ -27,7 +27,7 @@ public class App {
     public static void addTask (Scanner input, ArrayList<Task> tasks){
         String title = ui.InputUtils.getString(input, "title: ");
         if (title.trim().isEmpty()){
-            System.out.println("empty title is not allowed");
+            System.out.println("Empty title is not allowed.");
             return;
         }
         String desc = ui.InputUtils.getString(input, "description: ");
@@ -36,23 +36,14 @@ public class App {
     }
 
     public static void markTaskAsCompleted(Scanner input, ArrayList<model.Task> tasks){
-        Task task = getTaskByName(input, tasks);
+        String title = ui.InputUtils.getString(input,"name of the task: ");
+        Task task = findTaskByTitle(tasks, title);
         if (task == null){
             System.out.println("task not found");
             return;
         }
         task.setCompleted();
         System.out.println("task marked as completed");
-    }
-
-    public static Task getTaskByName(Scanner input, ArrayList<model.Task> tasks){
-        String name = ui.InputUtils.getString(input,"name of the task: ");
-        for(Task t : tasks){
-            if (name.equals(t.getTitle())){
-                return t;
-            }
-        }
-        return null;
     }
 
     public static void showPendingTasks(ArrayList<Task> tasks){
@@ -72,7 +63,7 @@ public class App {
 
     public static Task findTaskByTitle(ArrayList<Task> tasks, String title){
         for (Task t : tasks){
-            if (t.getTitle().equals(title)){
+            if (t.getTitle().equalsIgnoreCase(title)){
                 return t;
             }
         }
@@ -83,7 +74,7 @@ public class App {
         String title = InputUtils.getString(input, "enter the title: ");
         Task task = findTaskByTitle(tasks, title);
         if(task == null){
-            System.out.println("task not fount");
+            System.out.println("task not found.");
         }else{
             System.out.println("task found: ");
             System.out.println(task);
@@ -103,7 +94,7 @@ public class App {
                     addTask(input, tasks);
                     break;
                 case 2:
-                markTaskAsCompleted(input, tasks);
+                    markTaskAsCompleted(input, tasks);
                     break;
                 case 3:
                     showPendingTasks(tasks);
