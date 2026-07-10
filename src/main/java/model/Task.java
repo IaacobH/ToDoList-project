@@ -27,15 +27,19 @@ public class Task {
     }
 
 
-    public void setCompleted() {
+    public void markAsCompleted() {
         this.completed = !completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
-    public void setCompleted(boolean completed) {
+    public void markAsCompleted(boolean completed) {
         this.completed = completed;
     }
 
