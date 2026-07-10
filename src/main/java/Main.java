@@ -14,6 +14,7 @@ public class Main {
 
         ArrayList<Task> tasks = readFromJsonFile();
 
+
         ui.App.run(tasks);
 
         saveTasksToJson(tasks);
