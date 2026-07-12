@@ -2,6 +2,7 @@ package service;
 
 import model.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskService {
@@ -10,8 +11,8 @@ public class TaskService {
         ERROR
     }
 
-    public static boolean addTask(String title, String desc, ArrayList<Task> tasks){
-        Task task = new Task(title, desc);
+    public static boolean addTask(String title, String desc, LocalDate date, ArrayList<Task> tasks){
+        Task task = new Task(title, desc, date);
         tasks.add(task);
         return true;
     }

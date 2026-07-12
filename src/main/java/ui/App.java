@@ -1,8 +1,9 @@
 package ui;
 
 import model.Task;
-import repository.TasksRepository;
 import service.TaskService;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,11 +26,10 @@ public class App {
                 case 1 -> handleAddTask(input, tasks);
                 case 2 -> handleMarkTaskAsCompleted(input, tasks);
                 case 3 -> showPendingTasks(tasks);
-                case 4 -> TasksRepository.saveTasksToJson(tasks);
-                case 5 -> showAllTasks(tasks);
-                case 6 -> searchTaskByTitle(input, tasks);
-                case 7 -> handleDeleteTask(input, tasks);
-                case 8 -> {
+                case 4 -> showAllTasks(tasks);
+                case 5 -> searchTaskByTitle(input, tasks);
+                case 6 -> handleDeleteTask(input, tasks);
+                case 7 -> {
                     running = false;
                     System.out.println("Goodbye!");
                 }
@@ -45,21 +45,23 @@ public class App {
         System.out.println("1. Add a new task");
         System.out.println("2. Mark a task as completed");
         System.out.println("3. Show pending tasks");
-        System.out.println("4. Save tasks to Json");
-        System.out.println("5. Show all tasks");
-        System.out.println("6. Search task by title");
-        System.out.println("7. Delete task by title");
-        System.out.println("8. Exit");
+        System.out.println("4. Show all tasks");
+        System.out.println("5. Search task by title");
+        System.out.println("6. Delete task by title");
+        System.out.println("7. Exit");
     }
 
     public static void handleAddTask(Scanner input, ArrayList<Task> tasks){
-        String title = ui.InputUtils.getString(input, "title: ");
+        String title = InputUtils.getString(input, "title: ");
         if (title.trim().isEmpty()){
             System.out.println("Empty title is not allowed.");
             return;
         }
-        String desc = ui.InputUtils.getString(input, "description: ");
-        boolean added = TaskService.addTask(title, desc, tasks);
+        String desc = InputUtils.getString(input, "description: ");
+
+        LocalDate date = InputUtils.getDate(input, "Enter date (dd/MM/yyyy): ");
+
+        boolean added = TaskService.addTask(title, desc, date, tasks);
         if (added){
             System.out.println("Task added successfully");
             return;

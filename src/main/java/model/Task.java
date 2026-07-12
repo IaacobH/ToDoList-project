@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Task extends Item {
     private boolean completed;
 
-    public Task(String title, String desc, LocalDate date) {
-        super(title, desc, date);
+    public Task(String title, String description, LocalDate date) {
+        super(title, description, date);
         this.completed = false;
     }
 
@@ -24,9 +24,9 @@ public class Task extends Item {
     @Override
     public String toString() {
         return "Task{" +
-                "title='" + super.getTitle() + '\'' +
-                ", desc='" + super.getDescription() + '\'' +
-                ", date=" + super.getDate() +
+                "title='" + getTitle() + '\'' +
+                ", desc='" + getDescription() + '\'' +
+                ", date=" + getDate() +
                 ", completed=" + completed +
                 '}';
     }

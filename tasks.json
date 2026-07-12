@@ -1,17 +1,11 @@
 [ {
-  "title" : "leer",
-  "desc" : "babilonia dopamina",
-  "completed" : false
-}, {
-  "title" : "sofer",
-  "desc" : "escribir pitum haketoret",
-  "completed" : false
-}, {
-  "title" : "workout",
-  "desc" : "entrenar press banca y fondos",
-  "completed" : false
-}, {
   "title" : "compras",
-  "desc" : "comprar leche tomate",
+  "description" : "comprar pan",
+  "date" : [ 2026, 2, 11 ],
+  "completed" : false
+}, {
+  "title" : "estudiar",
+  "description" : "repasar java",
+  "date" : [ 2026, 7, 12 ],
   "completed" : false
 } ]
