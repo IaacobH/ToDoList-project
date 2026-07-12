@@ -1,15 +1,42 @@
 package ui;
 
 import model.Task;
+import repository.TasksRepository;
 import service.TaskService;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static repository.TasksRepository.saveTasksToJson;
 
 public class App {
 
     public App() {
+    }
+
+    public static void  run(ArrayList<Task> tasks){
+        Scanner input = new Scanner(System.in);
+        int choice;
+        boolean running = true;
+
+        while(running) {
+            showMenu();
+            choice = ui.InputUtils.getInt(input, "Choose an option: ");
+
+            switch (choice) {
+                case 1 -> handleAddTask(input, tasks);
+                case 2 -> handleMarkTaskAsCompleted(input, tasks);
+                case 3 -> showPendingTasks(tasks);
+                case 4 -> TasksRepository.saveTasksToJson(tasks);
+                case 5 -> showAllTasks(tasks);
+                case 6 -> searchTaskByTitle(input, tasks);
+                case 7 -> handleDeleteTask(input, tasks);
+                case 8 -> {
+                    running = false;
+                    System.out.println("Goodbye!");
+                }
+                default -> System.out.println("Invalid option. Please try again.");
+            }
+        }
+
     }
 
     public static void showMenu(){
@@ -97,30 +124,4 @@ public class App {
 
     }
 
-    public static void  run(ArrayList<Task> tasks){
-        Scanner input = new Scanner(System.in);
-        int choice;
-        boolean running = true;
-
-        while(running) {
-            showMenu();
-            choice = ui.InputUtils.getInt(input, "Choose an option: ");
-
-            switch (choice) {
-                case 1 -> handleAddTask(input, tasks);
-                case 2 -> handleMarkTaskAsCompleted(input, tasks);
-                case 3 -> showPendingTasks(tasks);
-                case 4 -> saveTasksToJson(tasks);
-                case 5 -> showAllTasks(tasks);
-                case 6 -> searchTaskByTitle(input, tasks);
-                case 7 -> handleDeleteTask(input, tasks);
-                case 8 -> {
-                    running = false;
-                    System.out.println("Goodbye!");
-                }
-                default -> System.out.println("Invalid option. Please try again.");
-            }
-        }
-
-    }
 }
