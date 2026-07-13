@@ -1,0 +1,29 @@
+[ {
+  "type" : "task",
+  "title" : "compras",
+  "description" : "comprar pan",
+  "date" : "2026-02-11",
+  "completed" : false
+}, {
+  "type" : "task",
+  "title" : "estudiar",
+  "description" : "repasar java",
+  "date" : "2026-07-12",
+  "completed" : false
+}, {
+  "type" : "task",
+  "title" : "aa",
+  "description" : "aa",
+  "date" : "2024-12-22",
+  "completed" : false
+}, {
+  "type" : "event",
+  "title" : "independencia",
+  "description" : "feriado por el dia de la ind",
+  "date" : "1820-05-25"
+}, {
+  "type" : "event",
+  "title" : "casamiento",
+  "description" : "miriam y el chabon",
+  "date" : "2026-08-08"
+} ]

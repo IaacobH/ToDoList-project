@@ -1,23 +1,19 @@
-import model.Task;
-import ui.App;
+import model.Item;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import static repository.TasksRepository.readFromJsonFile;
-import static repository.TasksRepository.saveTasksToJson;
+import static repository.ItemsRepository.readFromJsonFile;
+import static repository.ItemsRepository.saveTasksToJson;
 
 public class Main {
 
     static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        ArrayList<Task> tasks = readFromJsonFile();
+        ArrayList<Item> items = readFromJsonFile();
 
 
-        ui.App.run(tasks);
+        ui.App.run(items);
 
-        saveTasksToJson(tasks);
+        saveTasksToJson(items);
 
 
 
