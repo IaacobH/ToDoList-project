@@ -30,8 +30,8 @@ public class App {
                 case 4 -> handleMarkTaskAsCompleted(input, items);
                 case 5 -> showPendingTasks(items);
                 case 6 -> showAllItems(items);
-                case 7 -> searchTaskByTitle(input, items);
-                case 8 -> handleDeleteTask(input, items);
+                case 7 -> searchItemByTitle(input, items);
+                case 8 -> handleDeleteItem(input, items);
                 case 9 -> {
                     running = false;
                     System.out.println("Goodbye!");
@@ -51,8 +51,8 @@ public class App {
         System.out.println("4. Mark a task as completed");
         System.out.println("5. Show pending tasks");
         System.out.println("6. Show all items");
-        System.out.println("7. Search task by title");
-        System.out.println("8. Delete task by title");
+        System.out.println("7. Search item by title");
+        System.out.println("8. Delete item by title");
         System.out.println("9. Exit");
     }
 
@@ -141,24 +141,29 @@ public class App {
         }
     }
 
-    public static void searchTaskByTitle(Scanner input, ArrayList<Item> items){
+    public static void searchItemByTitle(Scanner input, ArrayList<Item> items){
         String title = InputUtils.getString(input, "enter the title: ");
-        Task task = ItemService.findTaskByTitle(items, title);
-        if(task == null){
-            System.out.println("task not found.");
+        Item item = ItemService.findItemByTitle(items, title);
+        if(item == null){
+            System.out.println("item not found.");
         }else{
-            System.out.println("task found: ");
-            System.out.println(task);
+            System.out.println("item found: ");
+            System.out.println(item);
         }
     }
 
-    public static void handleDeleteTask(Scanner input, ArrayList<Item> items){
-        String title = InputUtils.getString(input, "task name: ");
-        if (title.trim().isEmpty()) {
-            System.out.println("Task name cannot be empty.");
-            return;
+    public static void showAllTitles(ArrayList<Item> items){
+        System.out.println("All the items: ");
+        for(Item item : items){
+            System.out.println(item.getTitle());
         }
-        boolean deleted = ItemService.deleteTaskByTitle(items, title);
+    }
+
+    public static void handleDeleteItem(Scanner input, ArrayList<Item> items){
+        showAllTitles(items);
+        String title = InputUtils.getString(input, "item title to remove: ");
+
+        boolean deleted = ItemService.deleteItemByTitle(items, title);
         if (deleted) {
             System.out.println("Task deleted successfully.");
             return;

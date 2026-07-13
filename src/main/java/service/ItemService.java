@@ -51,12 +51,21 @@ public class ItemService {
         return null;
     }
 
-    public static boolean deleteTaskByTitle(ArrayList<Item> items, String title){
-        Task task = findTaskByTitle(items, title);
-        if (task == null) {
+    public static Item findItemByTitle(ArrayList<Item> items, String title){
+        for (Item item : items){
+            if (item.getTitle().trim().equalsIgnoreCase(title.trim())){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public static boolean deleteItemByTitle(ArrayList<Item> items, String title){
+        Item item = findItemByTitle(items, title);
+        if (item == null) {
             return false;
         }
-        items.remove(task);
+        items.remove(item);
         return true;
 
     }
